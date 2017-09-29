@@ -177,7 +177,7 @@ module WebsocketRails
 
         # Still publish the event in case the user is connected to
         # other workers as well.
-        sync.publish_remote event if WebsocketRails.synchronize?
+        Synchronization.sync.publish_remote event if WebsocketRails.synchronize?
         true
       end
 

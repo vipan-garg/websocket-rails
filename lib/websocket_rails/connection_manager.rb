@@ -44,7 +44,10 @@ module WebsocketRails
       @connections = {}
       @dispatcher  = Dispatcher.new(self)
       @dispatcher.process_inbound
+      self.sync_puma_worker
+    end
 
+    def sync_puma_worker
       if WebsocketRails.synchronize?
         @sync_worker = Thread.new do
           sync.synchronize!
